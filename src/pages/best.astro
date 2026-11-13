@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro'
+import tools from '../../data/tools.json'
+---
+<Base>
+  <h1>Best tools this month</h1>
+  <p>Our picks across analytics and content management.</p>
+  <ol>
+    {tools.map(t => <li>{t.name}: {t.tagline}</li>)}
+  </ol>
+</Base>

@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+const base = import.meta.env.BASE_URL
+---
+<Base title="Blog" description="Guides and comparisons from Toolshelf.">
+  <h1>Blog</h1>
+  <ul>
+    {posts.map(p => <li><a href={`${base}blog/${p.id}/`}>{p.data.title}</a></li>)}
+  </ul>
+</Base>

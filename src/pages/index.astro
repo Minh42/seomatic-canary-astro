@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro'
+import tools from '../../data/tools.json'
+const base = import.meta.env.BASE_URL
+---
+<Base title="Toolshelf" description="Find tools.">
+  <h1>Discover software tools</h1>
+  <ul>
+    {tools.map(t => <li><a href={`${base}alternatives/${t.slug}/`}>{t.name} alternatives</a></li>)}
+  </ul>
+</Base>

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro'
+import tools from '../../../data/tools.json'
+
+export function getStaticPaths() {
+  return tools.map(tool => ({ params: { slug: tool.slug }, props: { tool } }))
+}
+
+const { tool } = Astro.props
+const others = tools.filter(t => t.category === tool.category && t.slug !== tool.slug)
+---
+<Base title={`${tool.name} alternatives`}>
+  <h1>{tool.name} alternatives</h1>
+  <p>{tool.body}</p>
+  <ul>
+    {others.map(o => <li>{o.name}: {o.tagline}</li>)}
+  </ul>
+</Base>
